@@ -1,6 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
     <application
-        android:label="flutter_base"
+        android:label="mobile_open_with_dialog_demo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -23,6 +29,26 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!-- Intent filter for opening .ics files (VIEW action) -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:mimeType="text/calendar" />
+                <data android:mimeType="application/vnd.google-apps.calendar" /> <!-- Optional: For Google Calendar specific intents -->
+            </intent-filter>
+
+            <!-- Intent filter for sharing .ics files (SEND action) -->
+            <intent-filter>
+                 <action android:name="android.intent.action.SEND" />
+                 <action android:name="android.intent.action.SEND_MULTIPLE" />
+                 <category android:name="android.intent.category.DEFAULT" />
+                 <data android:mimeType="text/calendar" />
+                 <data android:mimeType="application/vnd.google-apps.calendar" /> <!-- Optional -->
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
